@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/main_graph">
+
+    <navigation
+        android:id="@+id/main_graph"
+        app:startDestination="@id/main_fragment">
+
+        <action
+            android:id="@+id/action_navigate_to_favorites_fragment"
+            app:destination="@id/favorites_graph" />
+
+        <fragment
+            android:id="@+id/main_fragment"
+            android:name="elior.com.infrastructurekotlin.pages.fragments.MainFragment"
+            tools:layout="@layout/fragment_main" />
+    </navigation>
+
+    <navigation
+        android:id="@+id/favorites_graph"
+        app:startDestination="@id/favorites_fragment">
+
+        <argument
+            android:name="resultsData"
+            app:argType="elior.com.infrastructurekotlin.models.Results" />
+
+        <fragment
+            android:id="@+id/favorites_fragment"
+            android:name="elior.com.infrastructurekotlin.pages.fragments.FavoritesFragment"
+            tools:layout="@layout/fragment_favorites" />
+    </navigation>
+</navigation>
