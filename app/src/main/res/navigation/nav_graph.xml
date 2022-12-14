@@ -15,7 +15,7 @@
 
         <fragment
             android:id="@+id/main_fragment"
-            android:name="elior.com.infrastructurekotlin.pages.fragments.MainFragment"
+            android:name="elior.com.infrastructurekotlin.presentation.pages.fragments.MainFragment"
             tools:layout="@layout/fragment_main" />
     </navigation>
 
@@ -25,11 +25,11 @@
 
         <argument
             android:name="resultsData"
-            app:argType="elior.com.infrastructurekotlin.models.Results" />
+            app:argType="elior.com.infrastructurekotlin.data.models.Results" />
 
         <fragment
             android:id="@+id/favorites_fragment"
-            android:name="elior.com.infrastructurekotlin.pages.fragments.FavoritesFragment"
+            android:name="elior.com.infrastructurekotlin.presentation.pages.fragments.FavoritesFragment"
             tools:layout="@layout/fragment_favorites" />
     </navigation>
 </navigation>

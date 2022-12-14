@@ -5,7 +5,7 @@
 
         <variable
             name="movieFavorites"
-            type="elior.com.infrastructurekotlin.room.MoviesFavorites" />
+            type="elior.com.infrastructurekotlin.data.room.MoviesRoom" />
     </data>
 
     <LinearLayout
