@@ -22,7 +22,7 @@ class MoviesViewModel : ViewModel() {
         text.value = s.toString()
     }
 
-    fun getMovies() {
+    fun getAllMovies() {
         getRetrofitClientInstance()!!.getAllMovies("/3/search/movie?/&query=q&api_key=" + Constants.API_KEY)
             .enqueue(object : Callback<MovieModel?> {
                 override fun onResponse(call: Call<MovieModel?>, response: Response<MovieModel?>) {
@@ -37,7 +37,7 @@ class MoviesViewModel : ViewModel() {
             })
     }
 
-    fun saveToLocalData() {
+    fun saveDataToLocalData() {
         val moviesViewModelFavorites = MoviesViewModelRoom()
         val moviesFavorites = MoviesRoom()
 

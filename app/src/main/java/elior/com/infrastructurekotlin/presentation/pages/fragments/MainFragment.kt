@@ -8,10 +8,10 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import elior.com.infrastructurekotlin.R
-import elior.com.infrastructurekotlin.presentation.adapters.MoviesMainAdapter
-import elior.com.infrastructurekotlin.databinding.FragmentMainBinding
-import elior.com.infrastructurekotlin.data.fragstates.MoviesFragState
 import elior.com.infrastructurekotlin.core.Constants
+import elior.com.infrastructurekotlin.data.fragstates.MoviesFragState
+import elior.com.infrastructurekotlin.databinding.FragmentMainBinding
+import elior.com.infrastructurekotlin.presentation.adapters.MoviesMainAdapter
 import elior.com.infrastructurekotlin.presentation.pages.viewmodels.MoviesViewModel
 
 class MainFragment : BaseFragment() {
@@ -28,8 +28,7 @@ class MainFragment : BaseFragment() {
                             Constants.MOVIES -> {
 
                                 setData()
-
-                                moviesViewModel.saveToLocalData()
+                                saveDataToLocalData()
                             }
                         }
                     } else {
@@ -54,12 +53,9 @@ class MainFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        initUI()
-
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
-        binding.moviesViewModel = moviesViewModel
-        binding.lifecycleOwner = this
+        initDataBinding(inflater, container)
+        connectObserverToViewModel()
+        callGetAllMoviesEndPoint()
 
         return binding.root
     }
@@ -67,19 +63,35 @@ class MainFragment : BaseFragment() {
     override fun onDestroy() {
         super.onDestroy()
 
+        removeObserverFromViewModel()
+    }
+
+    private fun initDataBinding(inflater: LayoutInflater, container: ViewGroup?) {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
+        binding.moviesViewModel = moviesViewModel
+        binding.lifecycleOwner = this
+    }
+
+    private fun connectObserverToViewModel() {
+        moviesViewModel.moviesFragStateMutableLiveData.observe(viewLifecycleOwner, mObserver)
+    }
+
+    private fun removeObserverFromViewModel() {
         moviesViewModel.moviesFragStateMutableLiveData.removeObserver(mObserver)
     }
 
-    private fun initUI() {
-        moviesViewModel.moviesFragStateMutableLiveData.observe(viewLifecycleOwner, mObserver)
-
-        moviesViewModel.getMovies()
-
+    private fun callGetAllMoviesEndPoint() {
         showProgressDialog(requireActivity().resources.getString(R.string.loading_your_data))
+
+        moviesViewModel.getAllMovies()
     }
 
     private fun setData() {
         binding.recyclerView.adapter = MoviesMainAdapter(moviesViewModel.movieModel!!.results)
+    }
+
+    private fun saveDataToLocalData() {
+        moviesViewModel.saveDataToLocalData()
     }
 
 }

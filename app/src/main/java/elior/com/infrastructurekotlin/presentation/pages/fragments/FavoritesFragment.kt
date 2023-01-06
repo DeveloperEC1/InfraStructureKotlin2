@@ -6,34 +6,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import elior.com.infrastructurekotlin.FavoritesGraphArgs
 import elior.com.infrastructurekotlin.R
-import elior.com.infrastructurekotlin.presentation.adapters.MoviesFavoritesAdapter
-import elior.com.infrastructurekotlin.databinding.FragmentFavoritesBinding
 import elior.com.infrastructurekotlin.data.room.MoviesViewModelRoom
+import elior.com.infrastructurekotlin.databinding.FragmentFavoritesBinding
+import elior.com.infrastructurekotlin.presentation.adapters.MoviesFavoritesAdapter
 
 class FavoritesFragment : BaseFragment() {
 
     private lateinit var binding: FragmentFavoritesBinding
-    private lateinit var moviesViewModelFavorites: MoviesViewModelRoom
+    private var moviesViewModelFavorites: MoviesViewModelRoom = MoviesViewModelRoom()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorites, container, false)
-
-        initUI()
+        initDataBinding(inflater, container)
         setData()
 
         return binding.root
     }
 
-    private fun initUI() {
-        moviesViewModelFavorites = ViewModelProvider(this)[MoviesViewModelRoom::class.java]
+    private fun initDataBinding(inflater: LayoutInflater, container: ViewGroup?) {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorites, container, false)
     }
 
     private fun setData() {
