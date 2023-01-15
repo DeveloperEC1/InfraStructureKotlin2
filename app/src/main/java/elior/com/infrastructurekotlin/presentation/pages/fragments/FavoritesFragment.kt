@@ -10,12 +10,13 @@ import elior.com.infrastructurekotlin.FavoritesGraphArgs
 import elior.com.infrastructurekotlin.R
 import elior.com.infrastructurekotlin.data.room.MoviesViewModelRoom
 import elior.com.infrastructurekotlin.databinding.FragmentFavoritesBinding
-import elior.com.infrastructurekotlin.presentation.adapters.MoviesFavoritesAdapter
+import elior.com.infrastructurekotlin.presentation.pages.viewmodels.FavoritesViewModel
 
 class FavoritesFragment : BaseFragment() {
 
     private lateinit var binding: FragmentFavoritesBinding
-    private var moviesViewModelFavorites: MoviesViewModelRoom = MoviesViewModelRoom()
+    private val moviesViewModelFavorites: MoviesViewModelRoom = MoviesViewModelRoom()
+    private val favoritesViewModel: FavoritesViewModel = FavoritesViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +39,7 @@ class FavoritesFragment : BaseFragment() {
 
         moviesViewModelFavorites.getAll.observe(viewLifecycleOwner) { moviesFavorites ->
             moviesFavorites?.let {
-                binding.recyclerView.adapter = MoviesFavoritesAdapter(it)
+                favoritesViewModel.moviesFavoritesAdapter.setData(it)
             }
         }
     }

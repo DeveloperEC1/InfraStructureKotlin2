@@ -8,6 +8,7 @@ import elior.com.infrastructurekotlin.core.Constants
 import elior.com.infrastructurekotlin.data.retrofit.RetrofitClientInstance.Companion.getRetrofitClientInstance
 import elior.com.infrastructurekotlin.data.room.MoviesRoom
 import elior.com.infrastructurekotlin.data.room.MoviesViewModelRoom
+import elior.com.infrastructurekotlin.presentation.adapters.MoviesMainAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,6 +18,7 @@ class MoviesViewModel : ViewModel() {
     var movieModel: MovieModel? = null
     val moviesFragStateMutableLiveData: MutableLiveData<MoviesFragState> = MutableLiveData()
     val text = MutableLiveData<String>()
+    val moviesMainAdapter: MoviesMainAdapter = MoviesMainAdapter()
 
     fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
         text.value = s.toString()

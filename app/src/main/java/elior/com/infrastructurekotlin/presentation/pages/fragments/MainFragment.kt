@@ -87,7 +87,7 @@ class MainFragment : BaseFragment() {
     }
 
     private fun setData() {
-        binding.recyclerView.adapter = MoviesMainAdapter(moviesViewModel.movieModel!!.results)
+        moviesViewModel.moviesMainAdapter.setData(moviesViewModel.movieModel!!.results)
     }
 
     private fun saveDataToLocalData() {

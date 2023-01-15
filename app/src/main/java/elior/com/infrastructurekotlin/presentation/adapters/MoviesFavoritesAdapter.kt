@@ -1,5 +1,6 @@
 package elior.com.infrastructurekotlin.presentation.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -9,10 +10,9 @@ import elior.com.infrastructurekotlin.databinding.AdapterMoviesFavoritesBinding
 import elior.com.infrastructurekotlin.data.room.MoviesRoom
 import elior.com.infrastructurekotlin.presentation.adapters.viewholders.MoviesFavoritesViewHolder
 
-class MoviesFavoritesAdapter internal constructor(
-    private var moviesFavoritesArrayList: List<MoviesRoom>
-) :
-    RecyclerView.Adapter<MoviesFavoritesViewHolder>() {
+class MoviesFavoritesAdapter : RecyclerView.Adapter<MoviesFavoritesViewHolder>() {
+
+    private lateinit var moviesFavoritesArrayList: List<MoviesRoom>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesFavoritesViewHolder {
         val binding: AdapterMoviesFavoritesBinding = DataBindingUtil.inflate(
@@ -31,5 +31,11 @@ class MoviesFavoritesAdapter internal constructor(
     }
 
     override fun getItemCount() = moviesFavoritesArrayList.size
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(moviesFavoritesArrayList: List<MoviesRoom>) {
+        this.moviesFavoritesArrayList = moviesFavoritesArrayList
+        notifyDataSetChanged()
+    }
 
 }
