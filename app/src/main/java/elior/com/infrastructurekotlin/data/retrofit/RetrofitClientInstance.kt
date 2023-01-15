@@ -7,7 +7,7 @@ class RetrofitClientInstance {
 
     companion object {
 
-        private const val BASE_URL = "https://api.themoviedb.org"
+        private const val BASE_URL = "https://www.boredapi.com/api/"
 
         fun getRetrofitClientInstance(): GetDataService? {
 

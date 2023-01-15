@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="result"
-            type="elior.com.infrastructurekotlin.data.models.Results" />
+            name="event"
+            type="elior.com.infrastructurekotlin.data.models.Events" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{result.title}"
+            android:text="@{event.activity}"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

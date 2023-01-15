@@ -24,8 +24,8 @@
         app:startDestination="@id/favorites_fragment">
 
         <argument
-            android:name="resultsData"
-            app:argType="elior.com.infrastructurekotlin.data.models.Results" />
+            android:name="eventsData"
+            app:argType="elior.com.infrastructurekotlin.data.models.Events" />
 
         <fragment
             android:id="@+id/favorites_fragment"

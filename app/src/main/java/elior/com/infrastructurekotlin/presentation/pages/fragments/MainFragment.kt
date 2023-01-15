@@ -9,30 +9,29 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import elior.com.infrastructurekotlin.R
 import elior.com.infrastructurekotlin.core.Constants
-import elior.com.infrastructurekotlin.data.fragstates.MoviesFragState
+import elior.com.infrastructurekotlin.data.fragstates.EventsFragState
 import elior.com.infrastructurekotlin.databinding.FragmentMainBinding
-import elior.com.infrastructurekotlin.presentation.adapters.MoviesMainAdapter
-import elior.com.infrastructurekotlin.presentation.pages.viewmodels.MoviesViewModel
+import elior.com.infrastructurekotlin.presentation.pages.viewmodels.EventsViewModel
 
 class MainFragment : BaseFragment() {
 
     private lateinit var binding: FragmentMainBinding
-    private val moviesViewModel = MoviesViewModel()
+    private val eventsViewModel = EventsViewModel()
 
-    private val mObserver: Observer<MoviesFragState> =
-        Observer { moviesFragState: MoviesFragState? ->
-            if (moviesFragState != null) {
-                if (!moviesFragState.isHasBeenViewed) {
-                    if (moviesFragState.isOk) {
-                        when (moviesFragState.state) {
-                            Constants.MOVIES -> {
+    private val mObserver: Observer<EventsFragState> =
+        Observer { eventsFragState: EventsFragState? ->
+            if (eventsFragState != null) {
+                if (!eventsFragState.isHasBeenViewed) {
+                    if (eventsFragState.isOk) {
+                        when (eventsFragState.state) {
+                            Constants.EVENTS -> {
 
                                 setData()
                                 saveDataToLocalData()
                             }
                         }
                     } else {
-                        when (moviesFragState.stateErrorCode) {
+                        when (eventsFragState.stateErrorCode) {
                             Constants.RESPONSE_ERROR -> Toast.makeText(
                                 activity,
                                 activity?.resources?.getString(R.string.response_error),
@@ -43,7 +42,7 @@ class MainFragment : BaseFragment() {
 
                     hideProgressDialog()
 
-                    moviesFragState.isHasBeenViewed = true
+                    eventsFragState.isHasBeenViewed = true
                 }
             }
         }
@@ -55,7 +54,7 @@ class MainFragment : BaseFragment() {
     ): View {
         initDataBinding(inflater, container)
         connectObserverToViewModel()
-        callGetAllMoviesEndPoint()
+        callGetAllActivitiesEndPoint()
 
         return binding.root
     }
@@ -68,30 +67,30 @@ class MainFragment : BaseFragment() {
 
     private fun initDataBinding(inflater: LayoutInflater, container: ViewGroup?) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
-        binding.moviesViewModel = moviesViewModel
+        binding.eventsViewModel = eventsViewModel
         binding.lifecycleOwner = this
     }
 
     private fun connectObserverToViewModel() {
-        moviesViewModel.moviesFragStateMutableLiveData.observe(viewLifecycleOwner, mObserver)
+        eventsViewModel.eventsFragStateMutableLiveData.observe(viewLifecycleOwner, mObserver)
     }
 
     private fun removeObserverFromViewModel() {
-        moviesViewModel.moviesFragStateMutableLiveData.removeObserver(mObserver)
+        eventsViewModel.eventsFragStateMutableLiveData.removeObserver(mObserver)
     }
 
-    private fun callGetAllMoviesEndPoint() {
+    private fun callGetAllActivitiesEndPoint() {
         showProgressDialog(requireActivity().resources.getString(R.string.loading_your_data))
 
-        moviesViewModel.getAllMovies()
+        eventsViewModel.getAllActivities()
     }
 
     private fun setData() {
-        moviesViewModel.moviesMainAdapter.setData(moviesViewModel.movieModel!!.results)
+        eventsViewModel.eventsMainAdapter.setData(eventsViewModel.getDummyData())
     }
 
     private fun saveDataToLocalData() {
-        moviesViewModel.saveDataToLocalData()
+        eventsViewModel.saveDataToLocalData()
     }
 
 }

@@ -5,22 +5,22 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [MoviesRoom::class], version = 3, exportSchema = false)
-abstract class MoviesDatabaseRoom : RoomDatabase() {
+@Database(entities = [EventsRoom::class], version = 3, exportSchema = false)
+abstract class EventsDatabaseRoom : RoomDatabase() {
 
-    abstract fun moviesDao(): MoviesDaoRoom
+    abstract fun eventsDao(): EventsDaoRoom
 
     companion object {
         @Volatile
-        private var INSTANCE: MoviesDatabaseRoom? = null
+        private var INSTANCE: EventsDatabaseRoom? = null
 
-        fun getDatabase(context: Context): MoviesDatabaseRoom {
+        fun getDatabase(context: Context): EventsDatabaseRoom {
             return INSTANCE
                 ?: synchronized(this) {
                     val instance = Room.databaseBuilder(
                         context.applicationContext,
-                        MoviesDatabaseRoom::class.java,
-                        "movies_table_favorites"
+                        EventsDatabaseRoom::class.java,
+                        "events_table_favorites"
                     )
                         .fallbackToDestructiveMigration()
                         .allowMainThreadQueries()

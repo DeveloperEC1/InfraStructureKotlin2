@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import elior.com.infrastructurekotlin.FavoritesGraphArgs
 import elior.com.infrastructurekotlin.R
-import elior.com.infrastructurekotlin.data.room.MoviesViewModelRoom
+import elior.com.infrastructurekotlin.data.room.EventsViewModelRoom
 import elior.com.infrastructurekotlin.databinding.FragmentFavoritesBinding
 import elior.com.infrastructurekotlin.presentation.pages.viewmodels.FavoritesViewModel
 
 class FavoritesFragment : BaseFragment() {
 
     private lateinit var binding: FragmentFavoritesBinding
-    private val moviesViewModelFavorites: MoviesViewModelRoom = MoviesViewModelRoom()
+    private val eventsViewModelFavorites: EventsViewModelRoom = EventsViewModelRoom()
     private val favoritesViewModel: FavoritesViewModel = FavoritesViewModel()
 
     override fun onCreateView(
@@ -31,15 +31,17 @@ class FavoritesFragment : BaseFragment() {
 
     private fun initDataBinding(inflater: LayoutInflater, container: ViewGroup?) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorites, container, false)
+        binding.favoritesViewModel = favoritesViewModel
+        binding.lifecycleOwner = this
     }
 
     private fun setData() {
-        Log.i("getData1", FavoritesGraphArgs.fromBundle(requireArguments()).resultsData.title!!)
-//        Log.i("getData1", (requireArguments().getSerializable("resultsData") as Results).title!!)
+        Log.i("getData1", FavoritesGraphArgs.fromBundle(requireArguments()).eventsData.activity!!)
+//        Log.i("getData1", (requireArguments().getSerializable("eventsData") as Events).activity!!)
 
-        moviesViewModelFavorites.getAll.observe(viewLifecycleOwner) { moviesFavorites ->
-            moviesFavorites?.let {
-                favoritesViewModel.moviesFavoritesAdapter.setData(it)
+        eventsViewModelFavorites.getAll.observe(viewLifecycleOwner) { eventsFavorites ->
+            eventsFavorites?.let {
+                favoritesViewModel.eventsFavoritesAdapter.setData(it)
             }
         }
     }
