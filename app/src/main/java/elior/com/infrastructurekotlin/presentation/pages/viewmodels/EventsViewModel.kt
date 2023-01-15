@@ -1,6 +1,5 @@
 package elior.com.infrastructurekotlin.presentation.pages.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import elior.com.infrastructurekotlin.core.Constants
@@ -30,8 +29,6 @@ class EventsViewModel : ViewModel() {
             .enqueue(object : Callback<Events?> {
                 override fun onResponse(call: Call<Events?>, response: Response<Events?>) {
                     events = response.body()
-
-                    Log.i("check1", events!!.toString());
 
                     postPositiveResponse(Constants.EVENTS)
                 }
