@@ -71,13 +71,11 @@ class MainFragment : BaseFragment() {
         binding.lifecycleOwner = this
     }
 
-    private fun connectObserverToViewModel() {
+    private fun connectObserverToViewModel() =
         eventsViewModel.eventsFragStateMutableLiveData.observe(viewLifecycleOwner, mObserver)
-    }
 
-    private fun removeObserverFromViewModel() {
+    private fun removeObserverFromViewModel() =
         eventsViewModel.eventsFragStateMutableLiveData.removeObserver(mObserver)
-    }
 
     private fun callGetAllActivitiesEndPoint() {
         showProgressDialog(requireActivity().resources.getString(R.string.loading_your_data))
@@ -85,12 +83,9 @@ class MainFragment : BaseFragment() {
         eventsViewModel.getAllActivities()
     }
 
-    private fun setData() {
+    private fun setData() =
         eventsViewModel.eventsMainAdapter.setData(eventsViewModel.getDummyData())
-    }
 
-    private fun saveDataToLocalData() {
-        eventsViewModel.saveDataToLocalData()
-    }
+    private fun saveDataToLocalData() = eventsViewModel.saveDataToLocalData()
 
 }

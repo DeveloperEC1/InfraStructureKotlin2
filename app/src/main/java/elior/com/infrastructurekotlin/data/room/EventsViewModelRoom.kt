@@ -1,6 +1,5 @@
 package elior.com.infrastructurekotlin.data.room
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import elior.com.infrastructurekotlin.core.MyApplication.Companion.application
 
@@ -17,6 +16,6 @@ class EventsViewModelRoom : ViewModel() {
 
     fun deleteAll() = eventsDaoFavorites.deleteAll()
 
-    val getAll: LiveData<List<EventsRoom>> = eventsDaoFavorites.getAll()
+    fun getAll() = eventsDaoFavorites.getAll()
 
 }
