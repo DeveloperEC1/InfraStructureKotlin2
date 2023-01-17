@@ -74,7 +74,6 @@ class EventsFragment : BaseFragment() {
         eventsViewModel.eventsFragStateMutableLiveData.observe(viewLifecycleOwner, mObserver)
     }
 
-
     private fun removeObserverFromViewModel() {
         eventsViewModel.eventsFragStateMutableLiveData.removeObserver(mObserver)
     }
