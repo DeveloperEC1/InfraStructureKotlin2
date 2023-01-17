@@ -1,8 +1,10 @@
-package elior.com.infrastructurekotlin.presentation.pages.viewmodels
+package elior.com.infrastructurekotlin.data.managers
 
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import elior.com.infrastructurekotlin.data.room.EventsViewModelRoom
+import elior.com.infrastructurekotlin.presentation.pages.fragments.events_fragment.EventsViewModel
+import elior.com.infrastructurekotlin.presentation.pages.fragments.favorite_fragment.FavoritesViewModel
 
 class ViewModelManager {
 

@@ -1,4 +1,4 @@
-package elior.com.infrastructurekotlin.presentation.pages.fragments
+package elior.com.infrastructurekotlin.presentation.pages.fragments.events_fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,9 +11,10 @@ import elior.com.infrastructurekotlin.R
 import elior.com.infrastructurekotlin.core.Constants
 import elior.com.infrastructurekotlin.data.fragstates.EventsFragState
 import elior.com.infrastructurekotlin.databinding.FragmentMainBinding
-import elior.com.infrastructurekotlin.presentation.pages.viewmodels.ViewModelManager
+import elior.com.infrastructurekotlin.data.managers.ViewModelManager
+import elior.com.infrastructurekotlin.presentation.pages.fragments.BaseFragment
 
-class MainFragment : BaseFragment() {
+class EventsFragment : BaseFragment() {
 
     private lateinit var binding: FragmentMainBinding
     private val eventsViewModel = ViewModelManager.instance.eventsViewModel

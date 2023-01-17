@@ -1,24 +1,23 @@
 package elior.com.infrastructurekotlin.data.room
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
 interface EventsDaoRoom {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(eventsFavorites: EventsRoom)
+    suspend fun insert(eventsFavorites: EventsRoom)
 
     @Update
-    fun update(eventsFavorites: EventsRoom)
+    suspend fun update(eventsFavorites: EventsRoom)
 
     @Query("DELETE From events_table_favorites where ID = ID")
-    fun delete()
+    suspend fun delete()
 
     @Query("DELETE FROM events_table_favorites")
-    fun deleteAll()
+    suspend fun deleteAll()
 
     @Query("SELECT * from events_table_favorites")
-    fun getAll(): LiveData<List<EventsRoom>>
+    suspend fun getAll(): List<EventsRoom>
 
 }

@@ -4,11 +4,11 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 33
     defaultConfig {
         applicationId "elior.com.infrastructurekotlin"
         minSdkVersion 23
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -36,23 +36,24 @@ repositories {
 
 dependencies {
     def navigation_version = "2.5.3"
-    def room_version = "2.4.3"
+    def room_version = "2.5.0"
     def retrofit_version = "2.6.4"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation "androidx.appcompat:appcompat:1.5.1"
+    implementation "androidx.appcompat:appcompat:1.6.0"
     implementation "androidx.constraintlayout:constraintlayout:2.1.4"
 
     // Tests
     testImplementation "junit:junit:4.13.2"
-    androidTestImplementation "androidx.test.ext:junit:1.1.4"
+    androidTestImplementation "androidx.test.ext:junit:1.1.5"
 
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
 
     // Room
+    implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     kapt "androidx.room:room-compiler:$room_version"

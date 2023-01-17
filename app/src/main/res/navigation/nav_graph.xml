@@ -15,7 +15,7 @@
 
         <fragment
             android:id="@+id/main_fragment"
-            android:name="elior.com.infrastructurekotlin.presentation.pages.fragments.MainFragment"
+            android:name="elior.com.infrastructurekotlin.presentation.pages.fragments.events_fragment.EventsFragment"
             tools:layout="@layout/fragment_main" />
     </navigation>
 
@@ -29,7 +29,7 @@
 
         <fragment
             android:id="@+id/favorites_fragment"
-            android:name="elior.com.infrastructurekotlin.presentation.pages.fragments.FavoritesFragment"
+            android:name="elior.com.infrastructurekotlin.presentation.pages.fragments.favorite_fragment.FavoritesFragment"
             tools:layout="@layout/fragment_favorites" />
     </navigation>
 </navigation>

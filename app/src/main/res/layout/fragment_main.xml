@@ -6,7 +6,7 @@
 
         <variable
             name="eventsViewModel"
-            type="elior.com.infrastructurekotlin.presentation.pages.viewmodels.EventsViewModel" />
+            type="elior.com.infrastructurekotlin.presentation.pages.fragments.events_fragment.EventsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

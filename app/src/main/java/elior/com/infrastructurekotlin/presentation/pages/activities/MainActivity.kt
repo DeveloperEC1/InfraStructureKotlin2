@@ -2,7 +2,7 @@ package elior.com.infrastructurekotlin.presentation.pages.activities
 
 import android.os.Bundle
 import elior.com.infrastructurekotlin.R
-import elior.com.infrastructurekotlin.presentation.pages.viewmodels.ViewModelManager
+import elior.com.infrastructurekotlin.data.managers.ViewModelManager
 
 class MainActivity : BaseActivity() {
 

@@ -1,4 +1,4 @@
-package elior.com.infrastructurekotlin.presentation.pages.viewmodels
+package elior.com.infrastructurekotlin.presentation.pages.fragments.events_fragment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,9 +9,10 @@ import elior.com.infrastructurekotlin.data.retrofit.RetrofitClientInstance.Compa
 import elior.com.infrastructurekotlin.data.room.EventsRoom
 import elior.com.infrastructurekotlin.data.room.EventsViewModelRoom
 import elior.com.infrastructurekotlin.presentation.adapters.EventsMainAdapter
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class EventsViewModel : ViewModel() {
 
@@ -25,23 +26,24 @@ class EventsViewModel : ViewModel() {
     }
 
     fun getAllActivities() {
-        getRetrofitClientInstance()!!.getAllActivities("activity")!!
-            .enqueue(object : Callback<Events?> {
-                override fun onResponse(call: Call<Events?>, response: Response<Events?>) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = getRetrofitClientInstance()?.getAllActivities("activity")
+
+            withContext(Dispatchers.Main) {
+                if (response!!.isSuccessful) {
                     events = response.body()!!
                     eventsMainAdapter.setData(getDummyData())
                     saveDataToLocalData()
 
                     postPositiveResponse(Constants.EVENTS)
-                }
-
-                override fun onFailure(call: Call<Events?>, t: Throwable) {
+                } else {
                     postNegativeResponse(Constants.RESPONSE_ERROR, Constants.API_ERROR)
                 }
-            })
+            }
+        }
     }
 
-    fun saveDataToLocalData() {
+    private fun saveDataToLocalData() {
         val eventsFavorites = EventsRoom()
         val eventsViewModelFavorites = EventsViewModelRoom()
 
@@ -52,7 +54,7 @@ class EventsViewModel : ViewModel() {
         }
     }
 
-    fun getDummyData(): ArrayList<Events> {
+    private fun getDummyData(): ArrayList<Events> {
         val eventsArrayList = ArrayList<Events>()
 
 //        val events = Events()
