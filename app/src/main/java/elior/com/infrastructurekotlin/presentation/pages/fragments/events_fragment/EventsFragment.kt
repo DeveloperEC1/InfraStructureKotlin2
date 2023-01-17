@@ -70,11 +70,14 @@ class EventsFragment : BaseFragment() {
         binding.lifecycleOwner = this
     }
 
-    private fun connectObserverToViewModel() =
+    private fun connectObserverToViewModel() {
         eventsViewModel.eventsFragStateMutableLiveData.observe(viewLifecycleOwner, mObserver)
+    }
 
-    private fun removeObserverFromViewModel() =
+
+    private fun removeObserverFromViewModel() {
         eventsViewModel.eventsFragStateMutableLiveData.removeObserver(mObserver)
+    }
 
     private fun callGetAllActivitiesEndPoint() {
         showProgressDialog(requireActivity().resources.getString(R.string.loading_your_data))
