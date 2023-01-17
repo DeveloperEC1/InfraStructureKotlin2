@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import elior.com.infrastructurekotlin.MainGraphDirections
+import elior.com.infrastructurekotlin.EventsGraphDirections
 import elior.com.infrastructurekotlin.R
 import elior.com.infrastructurekotlin.data.models.Events
 import elior.com.infrastructurekotlin.databinding.AdapterEventsMainBinding
@@ -33,7 +33,7 @@ class EventsMainAdapter : RecyclerView.Adapter<EventsMainViewHolder>() {
 
         holder.itemView.setOnClickListener {
             findNavController(it).navigate(
-                MainGraphDirections.actionNavigateToFavoritesFragment(event)
+                EventsGraphDirections.actionNavigateToFavoritesFragment(event)
             )
 
 //            val bundle = Bundle()

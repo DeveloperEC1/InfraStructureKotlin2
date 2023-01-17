@@ -10,13 +10,13 @@ import androidx.lifecycle.Observer
 import elior.com.infrastructurekotlin.R
 import elior.com.infrastructurekotlin.core.Constants
 import elior.com.infrastructurekotlin.data.fragstates.EventsFragState
-import elior.com.infrastructurekotlin.databinding.FragmentMainBinding
 import elior.com.infrastructurekotlin.data.managers.ViewModelManager
+import elior.com.infrastructurekotlin.databinding.FragmentEventsBinding
 import elior.com.infrastructurekotlin.presentation.pages.fragments.BaseFragment
 
 class EventsFragment : BaseFragment() {
 
-    private lateinit var binding: FragmentMainBinding
+    private lateinit var binding: FragmentEventsBinding
     private val eventsViewModel = ViewModelManager.instance.eventsViewModel
 
     private val mObserver: Observer<EventsFragState> =
@@ -65,7 +65,7 @@ class EventsFragment : BaseFragment() {
     }
 
     private fun initDataBinding(inflater: LayoutInflater, container: ViewGroup?) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_events, container, false)
         binding.eventsViewModel = eventsViewModel
         binding.lifecycleOwner = this
     }
