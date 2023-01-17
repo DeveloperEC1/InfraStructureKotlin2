@@ -2,13 +2,16 @@ package elior.com.infrastructurekotlin.presentation.pages.activities
 
 import android.os.Bundle
 import elior.com.infrastructurekotlin.R
+import elior.com.infrastructurekotlin.presentation.pages.viewmodels.ViewModelManager
 
 class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
+        ViewModelManager.instance.initViewModels(this)
+
+        setContentView(R.layout.activity_main)
     }
 
 }

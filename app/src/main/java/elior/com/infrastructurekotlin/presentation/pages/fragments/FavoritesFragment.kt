@@ -9,15 +9,14 @@ import androidx.databinding.DataBindingUtil
 import elior.com.infrastructurekotlin.FavoritesGraphArgs
 import elior.com.infrastructurekotlin.R
 import elior.com.infrastructurekotlin.core.Constants.TAG
-import elior.com.infrastructurekotlin.data.room.EventsViewModelRoom
 import elior.com.infrastructurekotlin.databinding.FragmentFavoritesBinding
-import elior.com.infrastructurekotlin.presentation.pages.viewmodels.FavoritesViewModel
+import elior.com.infrastructurekotlin.presentation.pages.viewmodels.ViewModelManager
 
 class FavoritesFragment : BaseFragment() {
 
     private lateinit var binding: FragmentFavoritesBinding
-    private val eventsViewModelFavorites: EventsViewModelRoom = EventsViewModelRoom()
-    private val favoritesViewModel: FavoritesViewModel = FavoritesViewModel()
+    private val favoritesViewModel = ViewModelManager.instance.favoritesViewModel
+    private val eventsViewModelRoom = ViewModelManager.instance.eventsViewModelRoom
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,7 +39,7 @@ class FavoritesFragment : BaseFragment() {
         Log.i(TAG, FavoritesGraphArgs.fromBundle(requireArguments()).eventsData.activity!!)
 //        Log.i(TAG, (requireArguments().getSerializable("eventsData") as Events).activity!!)
 
-        eventsViewModelFavorites.getAll().observe(viewLifecycleOwner) { eventsFavorites ->
+        eventsViewModelRoom.getAll().observe(viewLifecycleOwner) { eventsFavorites ->
             eventsFavorites?.let {
                 favoritesViewModel.eventsFavoritesAdapter.setData(it)
             }

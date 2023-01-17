@@ -11,12 +11,12 @@ import elior.com.infrastructurekotlin.R
 import elior.com.infrastructurekotlin.core.Constants
 import elior.com.infrastructurekotlin.data.fragstates.EventsFragState
 import elior.com.infrastructurekotlin.databinding.FragmentMainBinding
-import elior.com.infrastructurekotlin.presentation.pages.viewmodels.EventsViewModel
+import elior.com.infrastructurekotlin.presentation.pages.viewmodels.ViewModelManager
 
 class MainFragment : BaseFragment() {
 
     private lateinit var binding: FragmentMainBinding
-    private val eventsViewModel = EventsViewModel()
+    private val eventsViewModel = ViewModelManager.instance.eventsViewModel
 
     private val mObserver: Observer<EventsFragState> =
         Observer { eventsFragState: EventsFragState? ->
@@ -26,8 +26,6 @@ class MainFragment : BaseFragment() {
                         when (eventsFragState.state) {
                             Constants.EVENTS -> {
 
-                                setData()
-                                saveDataToLocalData()
                             }
                         }
                     } else {
@@ -82,10 +80,5 @@ class MainFragment : BaseFragment() {
 
         eventsViewModel.getAllActivities()
     }
-
-    private fun setData() =
-        eventsViewModel.eventsMainAdapter.setData(eventsViewModel.getDummyData())
-
-    private fun saveDataToLocalData() = eventsViewModel.saveDataToLocalData()
 
 }

@@ -15,10 +15,10 @@ import retrofit2.Response
 
 class EventsViewModel : ViewModel() {
 
-    var events: Events? = null
-    val eventsFragStateMutableLiveData: MutableLiveData<EventsFragState> = MutableLiveData()
+    val eventsFragStateMutableLiveData = MutableLiveData<EventsFragState>()
     val text = MutableLiveData<String>()
-    val eventsMainAdapter: EventsMainAdapter = EventsMainAdapter()
+    val eventsMainAdapter = EventsMainAdapter()
+    var events = Events()
 
     fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
         text.value = s.toString()
@@ -28,7 +28,9 @@ class EventsViewModel : ViewModel() {
         getRetrofitClientInstance()!!.getAllActivities("activity")!!
             .enqueue(object : Callback<Events?> {
                 override fun onResponse(call: Call<Events?>, response: Response<Events?>) {
-                    events = response.body()
+                    events = response.body()!!
+                    eventsMainAdapter.setData(getDummyData())
+                    saveDataToLocalData()
 
                     postPositiveResponse(Constants.EVENTS)
                 }
@@ -56,7 +58,7 @@ class EventsViewModel : ViewModel() {
 //        val events = Events()
 //        events.activity = "Elior"
 
-        eventsArrayList.add(events!!)
+        eventsArrayList.add(events)
 
         return eventsArrayList
     }
