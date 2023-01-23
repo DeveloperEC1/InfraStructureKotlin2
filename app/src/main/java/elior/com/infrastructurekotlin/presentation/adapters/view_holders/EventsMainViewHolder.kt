@@ -1,4 +1,4 @@
-package elior.com.infrastructurekotlin.presentation.adapters.viewholders
+package elior.com.infrastructurekotlin.presentation.adapters.view_holders
 
 import androidx.recyclerview.widget.RecyclerView
 import elior.com.infrastructurekotlin.databinding.AdapterEventsMainBinding

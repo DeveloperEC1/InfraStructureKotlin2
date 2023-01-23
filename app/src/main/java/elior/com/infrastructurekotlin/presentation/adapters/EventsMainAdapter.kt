@@ -10,7 +10,7 @@ import elior.com.infrastructurekotlin.EventsGraphDirections
 import elior.com.infrastructurekotlin.R
 import elior.com.infrastructurekotlin.data.models.Events
 import elior.com.infrastructurekotlin.databinding.AdapterEventsMainBinding
-import elior.com.infrastructurekotlin.presentation.adapters.viewholders.EventsMainViewHolder
+import elior.com.infrastructurekotlin.presentation.adapters.view_holders.EventsMainViewHolder
 
 class EventsMainAdapter : RecyclerView.Adapter<EventsMainViewHolder>() {
 

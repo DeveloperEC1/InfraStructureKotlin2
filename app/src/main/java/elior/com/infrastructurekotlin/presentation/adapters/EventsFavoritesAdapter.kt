@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import elior.com.infrastructurekotlin.R
 import elior.com.infrastructurekotlin.data.room.EventsRoom
 import elior.com.infrastructurekotlin.databinding.AdapterEventsFavoritesBinding
-import elior.com.infrastructurekotlin.presentation.adapters.viewholders.EventsFavoritesViewHolder
+import elior.com.infrastructurekotlin.presentation.adapters.view_holders.EventsFavoritesViewHolder
 
 class EventsFavoritesAdapter : RecyclerView.Adapter<EventsFavoritesViewHolder>() {
 
