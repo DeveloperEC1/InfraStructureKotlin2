@@ -6,7 +6,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RetrofitClientInstance {
 
     companion object {
-
         private const val BASE_URL = "https://www.boredapi.com/api/"
 
         fun getRetrofitClientInstance(): GetDataService? {

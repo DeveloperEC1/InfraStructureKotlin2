@@ -11,7 +11,6 @@ class MyApplication : Application() {
     }
 
     companion object {
-
         lateinit var application: Application
     }
 

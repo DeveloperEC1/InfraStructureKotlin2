@@ -19,7 +19,6 @@ class ViewModelManager {
     }
 
     companion object {
-
         val instance = ViewModelManager()
 
     }
